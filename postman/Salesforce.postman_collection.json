@@ -1,0 +1,543 @@
+{
+	"info": {
+		"_postman_id": "097fddbd-5b34-4634-860c-c5fecfca2b5e",
+		"name": "Salesforce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "contact",
+			"item": [
+				{
+					"name": "New Request",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SalesforceUrl}}Lead",
+							"host": [
+								"{{SalesforceUrl}}Lead"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "contact",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response =  pm.response.json();\r",
+									"console.log(response)\r",
+									"var ID = response.id;\r",
+									"console.log(\"The Retrived Sys_id is : \" + ID);\r",
+									"pm.globals.set(\"Contact_id\",ID);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"FirstName\" : \"Soumadeep\",\r\n    \"LastName\" : \"Roy\",\r\n     \"Phone\" : \"1234567891\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SalesforceUrl}}contact",
+							"host": [
+								"{{SalesforceUrl}}contact"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "contact Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"FirstName\" : \"Soumadeep\",\r\n    \"LastName\" : \"Roy\",\r\n     \"Phone\" : \"727227337\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ap16.salesforce.com/services/data/v20.0/sobjects/contact/{{Contact_id}}",
+							"protocol": "https",
+							"host": [
+								"ap16",
+								"salesforce",
+								"com"
+							],
+							"path": [
+								"services",
+								"data",
+								"v20.0",
+								"sobjects",
+								"contact",
+								"{{Contact_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "contact Copy 2",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{sobject}}contact/0035g00000bDeIWAA0",
+							"host": [
+								"{{URL}}{{sobject}}contact"
+							],
+							"path": [
+								"0035g00000bDeIWAA0"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "oauth2",
+				"oauth2": [
+					{
+						"key": "addTokenTo",
+						"value": "header",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Opportunity",
+			"item": [
+				{
+					"name": "New Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response =  pm.response.json();\r",
+									"console.log(response)\r",
+									"var ID = response.id;\r",
+									"console.log(\"The Retrived Sys_id is : \" + ID);\r",
+									"pm.globals.set(\"opp_id\",ID);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Type\" : \"Opportunity\",\r\n    \"Name\" : \"Random Opportunity\",\r\n    \"StageName\" : \"Qualification\",\r\n    \"CloseDate\" : \"2022-06-15\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ap16.salesforce.com/services/data/v20.0/sobjects/Opportunity",
+							"protocol": "https",
+							"host": [
+								"ap16",
+								"salesforce",
+								"com"
+							],
+							"path": [
+								"services",
+								"data",
+								"v20.0",
+								"sobjects",
+								"Opportunity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response =  pm.response.json();\r",
+									"console.log(response)\r",
+									"var ID = response.id;\r",
+									"console.log(\"The Retrived Sys_id is : \" + ID);\r",
+									"pm.globals.set(\"opp_id\",ID);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Type\" : \"Opportunity\",\r\n    \"Name\" : \"Random Opportunity\",\r\n    \"StageName\" : \"Qualification\",\r\n    \"CloseDate\" : \"2022-06-15\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ap16.salesforce.com/services/data/v20.0/sobjects/Opportunity",
+							"protocol": "https",
+							"host": [
+								"ap16",
+								"salesforce",
+								"com"
+							],
+							"path": [
+								"services",
+								"data",
+								"v20.0",
+								"sobjects",
+								"Opportunity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://ap16.salesforce.com/services/data/v20.0/sobjects/Opportunity",
+							"protocol": "https",
+							"host": [
+								"ap16",
+								"salesforce",
+								"com"
+							],
+							"path": [
+								"services",
+								"data",
+								"v20.0",
+								"sobjects",
+								"Opportunity"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "oauth2",
+				"oauth2": [
+					{
+						"key": "addTokenTo",
+						"value": "header",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Lead",
+			"item": [
+				{
+					"name": "New Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response =  pm.response.json();\r",
+									"console.log(response)\r",
+									"var ID = response.id;\r",
+									"console.log(\"The Retrived Sys_id is : \" + ID);\r",
+									"pm.globals.set(\"lead_id\",ID);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"FirstName\" : \"Soumadeep\",\r\n    \"LastName\" : \"Roy\",\r\n    \"Company\"  : \"Random Company\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ap16.salesforce.com/services/data/v20.0/sobjects/lead",
+							"protocol": "https",
+							"host": [
+								"ap16",
+								"salesforce",
+								"com"
+							],
+							"path": [
+								"services",
+								"data",
+								"v20.0",
+								"sobjects",
+								"lead"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response =  pm.response.json();\r",
+									"console.log(response)\r",
+									"var ID = response.id;\r",
+									"console.log(\"The Retrived Sys_id is : \" + ID);\r",
+									"pm.globals.set(\"lead_id\",ID);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"FirstName\" : \"Soumadeep\",\r\n    \"LastName\" : \"Roy\",\r\n    \"Company\"  : \"Random Company\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ap16.salesforce.com/services/data/v20.0/sobjects/lead",
+							"protocol": "https",
+							"host": [
+								"ap16",
+								"salesforce",
+								"com"
+							],
+							"path": [
+								"services",
+								"data",
+								"v20.0",
+								"sobjects",
+								"lead"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://ap16.salesforce.com/services/data/v20.0/sobjects/Opportunity",
+							"protocol": "https",
+							"host": [
+								"ap16",
+								"salesforce",
+								"com"
+							],
+							"path": [
+								"services",
+								"data",
+								"v20.0",
+								"sobjects",
+								"Opportunity"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "oauth2",
+				"oauth2": [
+					{
+						"key": "addTokenTo",
+						"value": "header",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}
